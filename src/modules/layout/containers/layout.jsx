@@ -17,13 +17,16 @@ import { RouterMain } from "./router";
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
-export function App() {
+export function Container() {
   return (
     <Layout className="wrapper">
       <Header className="header">
         <div>
-          <img src="../logo-red.png" alt="logo" className="slogan" />
+          <img src="../logo-red.png" alt="logo" className="logox" />
         </div>
+        {/* <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["0"]} className="menu">
+          <Menu.Item key="1">Salir</Menu.Item>
+        </Menu> */}
       </Header>
       <Layout>
         <Sider width={200} className="site-layout-background">

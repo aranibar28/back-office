@@ -1,3 +1,7 @@
 export function AuthRegister() {
-  return <div>HOLA</div>;
+  return (
+    <div>
+      <h1>Register</h1>
+    </div>
+  );
 }

@@ -4,10 +4,10 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-/* import { authRouter } from "modules/auth"; */
+import { authRouter } from "modules/auth";
 import { userRouter } from "modules/users";
 export function RouterMain() {
-  const routesMain = [/* ...authRouter, */ ...userRouter];
+  const routesMain = [...authRouter, ...userRouter];
 
   return (
     <Router>

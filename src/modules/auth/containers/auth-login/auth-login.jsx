@@ -31,7 +31,7 @@ export function AuthLogin() {
         span: 8,
       }}
       wrapperCol={{
-        span: 16,
+        span: 8,
       }}
       initialValues={{
         remember: true,
