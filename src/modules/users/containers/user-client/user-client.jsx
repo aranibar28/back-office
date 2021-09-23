@@ -1,3 +1,7 @@
 export function UserClient() {
-  return <div>Clientes</div>;
+  return (
+    <div>
+      <h1>Clientes</h1>
+    </div>
+  );
 }

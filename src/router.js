@@ -15,7 +15,7 @@ export function RouterMain() {
         {routesMain.map((router, id) => (
           <Route key={id} path={router.path} render={() => router.component} />
         ))}
-        <Redirect from="*" to="/login" />
+        <Redirect from="*" to="/index" />
       </Switch>
     </Router>
   );

@@ -1,4 +1,4 @@
-import { UserClient, UserTrainer } from "./index";
+import { UserClient, UserTrainer, UserEmployee } from "./index";
 
 export const userRouter = [
   {
@@ -9,6 +9,11 @@ export const userRouter = [
   {
     path: "/trainers",
     component: <UserTrainer />,
+    private: false,
+  },
+  {
+    path: "/empleados",
+    component: <UserEmployee />,
     private: false,
   },
 ];
