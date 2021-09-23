@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import "antd/dist/antd.css";
+import { useState, useEffect } from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 
 export function AuthLogin() {
@@ -9,13 +9,15 @@ export function AuthLogin() {
     remember: false,
   });
 
-  const onSubmit = (event) => {
+/*   const onSubmit = (event) => {
     event.preventDefault();
     console.log("Datos:", formState);
-  };
+  }; */
+
   const onFinish = (values) => {
     console.log("Success:", values);
   };
+  
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
@@ -28,7 +30,7 @@ export function AuthLogin() {
     <Form
       name="basic"
       labelCol={{
-        span: 8,
+        span: 9,
       }}
       wrapperCol={{
         span: 8,
@@ -36,18 +38,18 @@ export function AuthLogin() {
       initialValues={{
         remember: true,
       }}
-      onSubmit={onSubmit}
+      /* onSubmit={onSubmit} */
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
       <Form.Item
-        label="Username"
+        label="Usuario"
         name="username"
         rules={[
           {
             required: true,
-            message: "Please input your username!",
+            message: "Por favor introduce tu usuario.",
           },
         ]}
       >
@@ -63,12 +65,12 @@ export function AuthLogin() {
       </Form.Item>
 
       <Form.Item
-        label="Password"
+        label="Contraseña"
         name="password"
         rules={[
           {
             required: true,
-            message: "Please input your password!",
+            message: "Por favor introduce tu contraseña.",
           },
         ]}
       >
@@ -87,8 +89,8 @@ export function AuthLogin() {
         name="remember"
         valuePropName="checked"
         wrapperCol={{
-          offset: 8,
-          span: 16,
+          offset: 9,
+          span: 9,
         }}
       >
         <Checkbox
@@ -100,18 +102,18 @@ export function AuthLogin() {
             }))
           }
         >
-          Remember me
+          Recordar
         </Checkbox>
       </Form.Item>
 
       <Form.Item
         wrapperCol={{
-          offset: 8,
-          span: 16,
+          offset: 9,
+          span: 9,
         }}
       >
         <Button type="primary" htmlType="submit">
-          Submit
+          Entrar
         </Button>
       </Form.Item>
     </Form>
