@@ -1,14 +1,15 @@
-.logo {
-  float: left;
-  width: 120px;
-  height: 31px;
-  margin: 16px 24px 16px 0;
-  background: rgba(255, 255, 255, 0.3);
+.header-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  .logo {
+    width: 100px;
+  }
 }
 
-.ant-row-rtl .logo {
-  float: right;
-  margin: 16px 0 16px 24px;
+.wrapper{
+  min-height: 100vh;
 }
 
 .site-layout-background {
@@ -17,8 +18,13 @@
 
 .container {
   max-width: 600px;
-  margin: auto;
+/*   margin: auto; */
   padding: 20px 0;
+}
+
+.content{
+  padding: 24px;
+  margin: 0;
 }
 
 .flex {
@@ -29,18 +35,14 @@
   align-items: center;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .m-2 {
   margin: 0.5rem;
 }
 
 .full-width {
   width: 100%;
-}
-
-.slogan{
-  width: 100px;
-}
-
-.wrapper{
-  min-height: 100vh;
 }

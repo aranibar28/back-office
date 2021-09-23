@@ -11,7 +11,7 @@ import {
   QuestionCircleOutlined,
 } from "@ant-design/icons";
 import { RouterMain } from "./router";
-/* import { TodoList } from "./todo-list"; */
+import { HeaderContainer } from "./components/header";
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -19,10 +19,8 @@ const { Header, Content, Sider } = Layout;
 export function App() {
   return (
     <Layout className="wrapper">
-      <Header className="header">
-        <div>
-          <img src="../logo-red.png" alt="logo" className="slogan" />
-        </div>
+      <Header>
+        <HeaderContainer />
       </Header>
       <Layout>
         <Sider width={200} className="site-layout-background">
@@ -69,18 +67,11 @@ export function App() {
           </Menu>
         </Sider>
         <Layout style={{ padding: "0 24px 24px" }}>
-          <Breadcrumb style={{ margin: "16px 0" }}>
+          <Breadcrumb style={{ margin: "16px 5px" }}>
             <Breadcrumb.Item>Inicio</Breadcrumb.Item>
           </Breadcrumb>
-          <Content
-            className="site-layout-background"
-            style={{
-              padding: 24,
-              margin: 0,
-              minHeight: 280,
-            }}
-          >
-            <RouterMain />
+          <Content className="content site-layout-background">
+            <RouterMain /> {/* <- AQUI VAN TODAS LAS VISTAS */}
           </Content>
         </Layout>
       </Layout>
