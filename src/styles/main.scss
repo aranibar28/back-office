@@ -1,0 +1,46 @@
+.logo {
+  float: left;
+  width: 120px;
+  height: 31px;
+  margin: 16px 24px 16px 0;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.ant-row-rtl .logo {
+  float: right;
+  margin: 16px 0 16px 24px;
+}
+
+.site-layout-background {
+  background: #fff;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px 0;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.m-2 {
+  margin: 0.5rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.logox{
+  width: 100px;
+}
+
+.wrapper{
+  min-height: 100vh;
+}
