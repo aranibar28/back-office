@@ -1,7 +1,7 @@
 export function Schedule() {
   return (
     <div>
-      <h1>Lista de Horarios</h1>
+      <h3>Lista de Horarios</h3>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 export function Membership() {
   return (
     <div>
-      <h1>Lista de Membresías</h1>
+      <h3>Lista de Membresías</h3>
     </div>
   );
 }

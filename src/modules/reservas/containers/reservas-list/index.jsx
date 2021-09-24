@@ -52,8 +52,6 @@ export function Reservas() {
     },
   ];
 
-  /* const data = [{}]; */
-
   const addTodo = async (todo) => {
     try {
       await fetch("http://localhost:3005/todo", {
@@ -122,7 +120,8 @@ export function Reservas() {
 
   return (
     <div className="todo-list">
-      <div className="flex item-center">
+      <div className="flex">
+        <h3>Lista de Reservas: </h3>
         <Form
           name="basic"
           labelCol={{
@@ -169,8 +168,7 @@ export function Reservas() {
           </div>
         </Form>
       </div>
-
-      <Table columns={columns} dataSource={tareas}></Table>
+      <Table columns={columns} dataSource={tareas} rowKey="id"></Table>
     </div>
   );
 }

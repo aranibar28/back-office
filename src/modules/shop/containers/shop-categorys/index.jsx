@@ -1,7 +1,7 @@
 export function Categorys() {
   return (
     <div>
-      <h1>Categorias</h1>
+      <h3>Lista de Categorias</h3>
     </div>
   );
 }

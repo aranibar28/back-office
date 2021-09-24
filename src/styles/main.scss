@@ -1,4 +1,4 @@
-.header-container{
+.header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,7 +8,7 @@
   }
 }
 
-.wrapper{
+.wrapper {
   min-height: 100vh;
 }
 
@@ -18,11 +18,11 @@
 
 .container {
   max-width: 600px;
-/*   margin: auto; */
+  /*   margin: auto; */
   padding: 20px 0;
 }
 
-.content{
+.content {
   padding: 24px;
   margin: 0;
 }
@@ -54,4 +54,8 @@
 .list {
   list-style: none;
   padding: 5px;
+}
+
+.betwwen {
+  justify-content: space-between;
 }

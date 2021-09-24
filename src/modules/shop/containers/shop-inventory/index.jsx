@@ -1,7 +1,7 @@
 export function Inventory() {
   return (
     <div>
-      <h1>Inventario</h1>
+      <h3>Lista de Inventario</h3>
     </div>
   );
 }

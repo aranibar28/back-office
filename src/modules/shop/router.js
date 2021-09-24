@@ -2,22 +2,22 @@ import { Categorys, Inventory, Products, Sales } from "./index";
 
 export const shopRouter = [
   {
-    path: "/categorias",
+    path: "/shop-categorys",
     component: <Categorys />,
     private: false,
   },
   {
-    path: "/inventario",
+    path: "/shop-inventory",
     component: <Inventory />,
     private: false,
   },
   {
-    path: "/productos",
+    path: "/shop-products",
     component: <Products />,
     private: false,
   },
   {
-    path: "/ventas",
+    path: "/shop-sales",
     component: <Sales />,
     private: false,
   },

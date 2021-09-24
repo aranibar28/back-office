@@ -1,7 +1,7 @@
 export function Products() {
   return (
     <div>
-      <h1>Productos</h1>
+      <h3>Lista de Productos</h3>
     </div>
   );
 }

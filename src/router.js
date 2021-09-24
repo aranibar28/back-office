@@ -25,6 +25,7 @@ export function RouterMain() {
         <Route key={id} path={router.path} render={() => router.component} />
       ))}
       <Redirect from="*" to="/" />
+      <Router></Router>
     </Switch>
   );
 }

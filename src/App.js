@@ -18,8 +18,6 @@ import { HeaderContainer } from "./components/header";
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
-/* const routes = [{ ...RouterMain }]; */
-
 export function App() {
   return (
     <Router>
@@ -99,12 +97,10 @@ export function App() {
           </Sider>
           <Layout style={{ padding: "0 24px 24px" }}>
             <Breadcrumb style={{ margin: "16px 5px" }}>
-              <Breadcrumb.Item>Inicio</Breadcrumb.Item>
+              <Breadcrumb.Item></Breadcrumb.Item>
             </Breadcrumb>
             <Content className="content site-layout-background">
-
               <RouterMain />
-              
             </Content>
           </Layout>
         </Layout>

@@ -2,7 +2,7 @@ import { ServicesCategory, ServicesList, Promotions } from "./index";
 
 export const servicesRouter = [
   {
-    path: "/categorias-servicios",
+    path: "/categorias",
     component: <ServicesCategory />,
     private: false,
   },
