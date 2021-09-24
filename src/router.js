@@ -20,13 +20,11 @@ export function RouterMain() {
   ];
 
   return (
-    <Router>
-      <Switch>
-        {routesMain.map((router, id) => (
-          <Route key={id} path={router.path} render={() => router.component} />
-        ))}
-        <Redirect from="*" to="/" />
-      </Switch>
-    </Router>
+    <Switch>
+      {routesMain.map((router, id) => (
+        <Route key={id} path={router.path} render={() => router.component} />
+      ))}
+      <Redirect from="*" to="/" />
+    </Switch>
   );
 }

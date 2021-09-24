@@ -34,6 +34,21 @@ export function Reservas() {
       title: "Acciones",
       dataIndex: "acciones",
       key: "acciones",
+      render: (a, tarea) => (
+        <Tooltip title="Eliminar">
+          <Popconfirm
+            placement="topLeft"
+            title={"Estas seguro que deseas remover el item?"}
+            onConfirm={() => {
+              confirmRemove(tarea);
+            }}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Button type="danger" shape="circle" icon={<DeleteOutlined />} />
+          </Popconfirm>
+        </Tooltip>
+      ),
     },
   ];
 
@@ -156,33 +171,6 @@ export function Reservas() {
       </div>
 
       <Table columns={columns} dataSource={tareas}></Table>
-
-      {tareas.map((tarea, id) => (
-        <ul key={id} className="flex list items-center">
-          <li>{tarea.tarea}</li>
-          <li className="m-2">{tarea.init}</li>
-          <li className="m-2">{tarea.finish}</li>
-          <li className="m-2">
-            <Tooltip title="Eliminar">
-              <Popconfirm
-                placement="topLeft"
-                title={"Estas seguro que deseas remover el item?"}
-                onConfirm={() => {
-                  confirmRemove(tarea);
-                }}
-                okText="Yes"
-                cancelText="No"
-              >
-                <Button
-                  type="danger"
-                  shape="circle"
-                  icon={<DeleteOutlined />}
-                />
-              </Popconfirm>
-            </Tooltip>
-          </li>
-        </ul>
-      ))}
     </div>
   );
 }
