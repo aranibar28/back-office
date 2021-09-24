@@ -1,5 +1,8 @@
-import { Button, Tooltip, Popconfirm, Table } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { useState } from "react";
+import { Form, Button, Tooltip, Popconfirm, Table, Modal } from "antd";
+import { PlusOutlined, UserOutlined } from "@ant-design/icons";
+import { Input } from "antd";
+
 export function UserClient() {
   const columns = [
     {
@@ -46,13 +49,69 @@ export function UserClient() {
       ),
     },
   ];
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   return (
     <div>
       <div className="flex items-center betwwen m-2">
         <h3>Lista de Clientes</h3>
-        <Button type="primary" htmlType="submit" icon={<PlusOutlined />}>
-          Registrar Usuario
+        <Modal
+          title="Agregar Clientes"
+          visible={isModalVisible}
+          onOk={handleOk}
+          onCancel={handleCancel}
+        >
+          <div className="m-2">
+            <Form.Item name="note" label="Note" rules={[{ required: true }]}>
+              <Input
+                placeholder="Ingresar nombre"
+                prefix={<UserOutlined className="site-form-item-icon" />}
+              />
+            </Form.Item>
+          </div>
+          <div className="m-2">
+            <Form.Item name="note" label="Note" rules={[{ required: true }]}>
+              <Input
+                placeholder="Ingresar nombre"
+                prefix={<UserOutlined className="site-form-item-icon" />}
+              />
+            </Form.Item>
+          </div>
+          <div className="m-2">
+            <Form.Item name="note" label="Note" rules={[{ required: true }]}>
+              <Input
+                placeholder="Ingresar nombre"
+                prefix={<UserOutlined className="site-form-item-icon" />}
+              />
+            </Form.Item>
+          </div>
+          <div className="m-2">
+            <Form.Item name="note" label="Note" rules={[{ required: true }]}>
+              <Input
+                placeholder="Ingresar nombre"
+                prefix={<UserOutlined className="site-form-item-icon" />}
+              />
+            </Form.Item>
+          </div>
+        </Modal>
+        <Button
+          type="primary"
+          htmlType="submit"
+          icon={<PlusOutlined />}
+          onClick={showModal}
+        >
+          Agregar Clientes
         </Button>
       </div>
 

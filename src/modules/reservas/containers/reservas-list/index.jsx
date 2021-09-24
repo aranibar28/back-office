@@ -1,24 +1,21 @@
 import { useState, useEffect } from "react";
-import {
-  Form,
-  Input,
-  Button,
-  DatePicker,
-  Tooltip,
-  Popconfirm,
-  Table,
-} from "antd";
+import { Form, Button, Tooltip, Popconfirm, Table } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
-const { RangePicker } = DatePicker;
+import { FormContainer } from "./container/form";
 
 export function Reservas() {
-  const [tareas, setTodo] = useState([]);
+  const [data, setData] = useState([]);
 
   const columns = [
     {
-      title: "Tarea",
-      dataIndex: "tarea",
-      key: "tarea",
+      title: "Código",
+      dataIndex: "id",
+      key: "id",
+    },
+    {
+      title: "Reserva",
+      dataIndex: "reserva",
+      key: "reserva",
     },
     {
       title: "Inicio",
@@ -34,13 +31,13 @@ export function Reservas() {
       title: "Acciones",
       dataIndex: "acciones",
       key: "acciones",
-      render: (a, tarea) => (
-        <Tooltip title="Eliminar">
+      render: (a, reserva) => (
+        <Tooltip>
           <Popconfirm
             placement="topLeft"
             title={"Estas seguro que deseas remover el item?"}
             onConfirm={() => {
-              confirmRemove(tarea);
+              confirmRemove(reserva);
             }}
             okText="Yes"
             cancelText="No"
@@ -52,123 +49,73 @@ export function Reservas() {
     },
   ];
 
-  const addTodo = async (todo) => {
+  const getReserva = async () => {
     try {
-      await fetch("http://localhost:3005/todo", {
+      const response = await fetch("http://localhost:3005/reservas");
+      return response.json();
+    } catch (error) {
+      alert("No se pudo obtener los datos, intenta nuevamente");
+    }
+  };
+
+  const addReserva = async (reserva) => {
+    try {
+      await fetch("http://localhost:3005/reservas", {
         method: "POST",
-        body: JSON.stringify(todo),
+        body: JSON.stringify(reserva),
         headers: {
           "Content-Type": "application/json",
         },
       });
-    } catch (err) {
-      console.log("err", err);
-      alert("no se pudo registrar intente denuevo");
+    } catch (error) {
+      alert("No se pudo registrar intente denuevo");
     }
   };
 
-  const getTodo = async () => {
+  const deleteReserva = async (reserva) => {
     try {
-      const response = await fetch("http://localhost:3005/todo");
-      return response.json();
-    } catch (err) {
-      alert("no se pudo obtener los datos, intenta nuevamente");
-    }
-  };
-
-  const deleteTodo = async (todo) => {
-    try {
-      await fetch(`http://localhost:3005/todo/${todo.id}`, {
+      await fetch(`http://localhost:3005/reservas/${reserva.id}`, {
         method: "DELETE",
       });
-    } catch (err) {
+    } catch (error) {
       alert("no se pudo obtener los datos, intenta nuevamente");
     }
   };
 
   const onFinish = async (fieldsValue) => {
     const {
-      tarea,
+      reserva,
       date: [init, finish],
     } = fieldsValue;
-
-    await addTodo({
-      tarea,
-      init: init.format("L"),
-      finish: finish.format("L"),
+    await addReserva({
+      reserva,
+      init: init.format("DD/MM/YYYY"),
+      finish: finish.format("DD/MM/YYYY"),
     });
-    const responseTodo = await getTodo();
-    setTodo(responseTodo);
+    const responseReserva = await getReserva();
+    setData(responseReserva);
   };
 
-  const onFinishFailed = (err) => {
-    console.log("err", err);
-  };
-
-  const confirmRemove = async (todo) => {
-    console.log("yes remover", todo);
-    await deleteTodo(todo);
-    const responseTodo = await getTodo();
-    setTodo(responseTodo);
+  const confirmRemove = async (reserva) => {
+    console.log("yes remover", reserva);
+    await deleteReserva(reserva);
+    const responseReserva = await getReserva();
+    setData(responseReserva);
   };
 
   useEffect(() => {
-    getTodo().then((responseTodo) => {
-      setTodo(responseTodo);
+    getReserva().then((responseReserva) => {
+      setData(responseReserva);
     });
   }, []);
 
   return (
-    <div className="todo-list">
-      <div className="flex">
-        <h3>Lista de Reservas: </h3>
-        <Form
-          name="basic"
-          labelCol={{
-            span: 8,
-          }}
-          wrapperCol={{
-            span: 16,
-          }}
-          initialValues={{
-            remember: true,
-          }}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-          autoComplete="off"
-        >
-          <div className="flex">
-            <Form.Item
-              label="Tarea"
-              name="tarea"
-              rules={[
-                {
-                  required: true,
-                  message: "Por favor ingresa el tema",
-                },
-              ]}
-            >
-              <Input placeholder="Ingresa tarea" className="mr-4 full-width" />
-            </Form.Item>
-            <Form.Item
-              label="Fecha"
-              name="date"
-              rules={[
-                {
-                  required: true,
-                  message: "Por favor ingresa el rango de fecha",
-                },
-              ]}
-            >
-              <RangePicker className="full-width" />
-            </Form.Item>
-            <Button className="ml-4" type="primary" htmlType="submit">
-              Registrar
-            </Button>
-          </div>
-        </Form>
-      </div>
-      <Table columns={columns} dataSource={tareas} rowKey="id"></Table>
+    <div className="reservas">
+      <Form labelCol={{ span: 8 }} onFinish={onFinish}>
+        {/* Inputs */}
+        <FormContainer />
+      </Form>
+      <Table columns={columns} dataSource={data} rowKey="id"></Table>
     </div>
   );
 }
