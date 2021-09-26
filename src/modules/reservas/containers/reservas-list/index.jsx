@@ -9,21 +9,26 @@ import {
   DatePicker,
   Modal,
 } from "antd";
-import { PlusOutlined, DeleteOutlined, EditOutlined} from "@ant-design/icons";
+import { PlusOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 /* import { FormContainer } from "./container/form"; */
 
 export function Reservas() {
   const [visible, setVisible] = useState(false);
+  const [visibleEdit, setVisibleEdit] = useState(false);
   const [data, setData] = useState([]);
   const { RangePicker } = DatePicker;
 
-  const showModal = async () => {
+  const showModalAdd = async () => {
     setVisible(!visible);
+  };
+
+  const showModalEdit = async () => {
+    setVisibleEdit(!visibleEdit);
   };
 
   const success = async () => {
     Modal.success({
-      content: "¡Los datos ha sido enviado correctamente!",
+      content: "¡Los datos han sido enviados correctamente!",
     });
   };
 
@@ -54,17 +59,12 @@ export function Reservas() {
       key: "acciones",
       render: (a, reserva) => (
         <Tooltip>
-          <Popconfirm
-            placement="topLeft"
-            title={"Estas seguro que deseas editar el item?"}
-            onConfirm={() => {
-              confirmRemove(reserva);
-            }}
-            okText="Si"
-            cancelText="No"
-          >
-            <Button type="primary" shape="circle" icon={<EditOutlined />} />
-          </Popconfirm>{" "}
+          <Button
+            type="primary"
+            shape="circle"
+            icon={<EditOutlined />}
+            onClick={showModalEdit}
+          />{" "}
           <Popconfirm
             placement="topLeft"
             title={"Estas seguro que deseas remover el item?"}
@@ -104,6 +104,20 @@ export function Reservas() {
     }
   };
 
+  /* const editReserva = async (reserva) => {
+    try {
+      await fetch(`http://localhost:3005/reservas/${reserva.id}`, {
+        method: "PUT",
+        body: JSON.stringify(reserva),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+    } catch (error) {
+      alert("no se pudo obtener los datos, intenta nuevamente");
+    }
+  }; */
+
   const deleteReserva = async (reserva) => {
     try {
       await fetch(`http://localhost:3005/reservas/${reserva.id}`, {
@@ -126,7 +140,7 @@ export function Reservas() {
     });
     const responseReserva = await getReserva();
     setData(responseReserva);
-    showModal();
+    showModalAdd();
     success();
   };
 
@@ -137,6 +151,13 @@ export function Reservas() {
     success();
   };
 
+  /* const confirmEdit = async (reserva) => {
+    await editReserva(reserva);
+    const responseReserva = await getReserva();
+    setData(responseReserva);
+    success();
+  };
+ */
   useEffect(() => {
     getReserva().then((responseReserva) => {
       setData(responseReserva);
@@ -147,19 +168,71 @@ export function Reservas() {
     <div className="reservas">
       <div className="flex text-center betwwen mb-4">
         <h3>Lista de Reservas</h3>
-        <Button type="primary" icon={<PlusOutlined />} onClick={showModal}>
+        <Button type="primary" icon={<PlusOutlined />} onClick={showModalAdd}>
           Agregar Reserva
         </Button>
       </div>
-      <Table columns={columns} dataSource={data} rowKey="id"></Table>
+
+      <div>
+        <Modal
+          visible={visible}
+          title="Agregar Reserva"
+          destroyOnClose={true}
+          onCancel={showModalAdd}
+          centered
+          footer={[
+            <Button onClick={showModalAdd} key="closed">
+              Cerrar
+            </Button>,
+          ]}
+        >
+          <Form labelCol={{ span: 4 }} onFinish={onFinish}>
+            <div className=" mt-0 text-center">
+              <Form.Item
+                label="Reserva"
+                name="reserva"
+                rules={[
+                  {
+                    required: true,
+                    message: "Por favor ingresa el tema",
+                  },
+                ]}
+              >
+                <Input placeholder="Ingresa reserva" className="full-width" />
+              </Form.Item>
+              <Form.Item
+                label="Fecha"
+                name="date"
+                rules={[
+                  {
+                    required: true,
+                    message: "Por favor ingresa el rango de fecha",
+                  },
+                ]}
+              >
+                <RangePicker
+                  className="full-width"
+                  disabledDate={(current) => {
+                    return current && current < Date.now() + 1;
+                  }}
+                />
+              </Form.Item>
+              <Button className="ml-4" type="primary" htmlType="submit">
+                Registrar
+              </Button>
+            </div>
+          </Form>
+        </Modal>
+      </div>
+
       <Modal
-        visible={visible}
-        title="Agregar Reserva"
+        visible={visibleEdit}
+        title="Editar Reserva"
         destroyOnClose={true}
-        onCancel={showModal}
+        onCancel={showModalEdit}
         centered
         footer={[
-          <Button onClick={showModal} key="close">
+          <Button onClick={showModalEdit} key="closed">
             Cerrar
           </Button>,
         ]}
@@ -188,14 +261,20 @@ export function Reservas() {
                 },
               ]}
             >
-              <RangePicker className="full-width" />
+              <RangePicker
+                className="full-width"
+                disabledDate={(current) => {
+                  return current && current < Date.now() + 1;
+                }}
+              />
             </Form.Item>
             <Button className="ml-4" type="primary" htmlType="submit">
-              Registrar
+              Guardar
             </Button>
           </div>
         </Form>
       </Modal>
+      <Table columns={columns} dataSource={data} rowKey="id"></Table>
     </div>
   );
 }
