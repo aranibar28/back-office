@@ -10,13 +10,13 @@ import {
   Modal,
 } from "antd";
 import { PlusOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
-/* import { FormContainer } from "./container/form"; */
 
 export function Reservas() {
   const [visible, setVisible] = useState(false);
   const [visibleEdit, setVisibleEdit] = useState(false);
   const [data, setData] = useState([]);
   const { RangePicker } = DatePicker;
+  const URL = "http://localhost:3005/reservas";
 
   const showModalAdd = async () => {
     setVisible(!visible);
@@ -83,7 +83,7 @@ export function Reservas() {
 
   const getReserva = async () => {
     try {
-      const response = await fetch("http://localhost:3005/reservas");
+      const response = await fetch(URL);
       return response.json();
     } catch (error) {
       alert("No se pudo obtener los datos, intenta nuevamente");
@@ -92,7 +92,7 @@ export function Reservas() {
 
   const addReserva = async (reserva) => {
     try {
-      await fetch("http://localhost:3005/reservas", {
+      await fetch(URL, {
         method: "POST",
         body: JSON.stringify(reserva),
         headers: {
@@ -106,7 +106,7 @@ export function Reservas() {
 
   /* const editReserva = async (reserva) => {
     try {
-      await fetch(`http://localhost:3005/reservas/${reserva.id}`, {
+      await fetch(`${URL}/${reserva.id}`, {
         method: "PUT",
         body: JSON.stringify(reserva),
         headers: {
@@ -120,7 +120,7 @@ export function Reservas() {
 
   const deleteReserva = async (reserva) => {
     try {
-      await fetch(`http://localhost:3005/reservas/${reserva.id}`, {
+      await fetch(`${URL}/${reserva.id}`, {
         method: "DELETE",
       });
     } catch (error) {
@@ -173,7 +173,7 @@ export function Reservas() {
         </Button>
       </div>
 
-      <div>
+      <div className="MODAL CREATE">
         <Modal
           visible={visible}
           title="Agregar Reserva"
@@ -186,59 +186,65 @@ export function Reservas() {
             </Button>,
           ]}
         >
-          <Form labelCol={{ span: 4 }} onFinish={onFinish}>
-            <div className=" mt-0 text-center">
-              <Form.Item
-                label="Reserva"
-                name="reserva"
-                rules={[
-                  {
-                    required: true,
-                    message: "Por favor ingresa el tema",
-                  },
-                ]}
-              >
-                <Input placeholder="Ingresa reserva" className="full-width" />
-              </Form.Item>
-              <Form.Item
-                label="Fecha"
-                name="date"
-                rules={[
-                  {
-                    required: true,
-                    message: "Por favor ingresa el rango de fecha",
-                  },
-                ]}
-              >
-                <RangePicker
-                  className="full-width"
-                  disabledDate={(current) => {
-                    return current && current < Date.now() + 1;
-                  }}
-                />
-              </Form.Item>
-              <Button className="ml-4" type="primary" htmlType="submit">
-                Registrar
-              </Button>
-            </div>
+          <Form
+            labelCol={{ span: 4 }}
+            onFinish={onFinish}
+            className=" mt-0 text-center"
+          >
+            <Form.Item
+              label="Reserva"
+              name="reserva"
+              rules={[
+                {
+                  required: true,
+                  message: "Por favor ingresa el tema",
+                },
+              ]}
+            >
+              <Input placeholder="Ingresa reserva" className="full-width" />
+            </Form.Item>
+            <Form.Item
+              label="Fecha"
+              name="date"
+              rules={[
+                {
+                  required: true,
+                  message: "Por favor ingresa el rango de fecha",
+                },
+              ]}
+            >
+              <RangePicker
+                className="full-width"
+                disabledDate={(current) => {
+                  return current && current < Date.now() + 1;
+                }}
+              />
+            </Form.Item>
+            <Button className="ml-4" type="primary" htmlType="submit">
+              Registrar
+            </Button>
           </Form>
         </Modal>
       </div>
 
-      <Modal
-        visible={visibleEdit}
-        title="Editar Reserva"
-        destroyOnClose={true}
-        onCancel={showModalEdit}
-        centered
-        footer={[
-          <Button onClick={showModalEdit} key="closed">
-            Cerrar
-          </Button>,
-        ]}
-      >
-        <Form labelCol={{ span: 4 }} onFinish={onFinish}>
-          <div className=" mt-0 text-center">
+      <div className="MODAL UPDATE">
+        <Modal
+          visible={visibleEdit}
+          title="Editar Reserva"
+          destroyOnClose={true}
+          onCancel={showModalEdit}
+          centered
+          footer={[
+            <Button onClick={showModalEdit} key="closed">
+              Cerrar
+            </Button>,
+          ]}
+        >
+          <Form
+            labelCol={{ span: 4 }}
+            onFinish={onFinish}
+            className=" mt-0 text-center"
+          >
             <Form.Item
               label="Reserva"
               name="reserva"
@@ -271,9 +277,10 @@ export function Reservas() {
             <Button className="ml-4" type="primary" htmlType="submit">
               Guardar
             </Button>
-          </div>
-        </Form>
-      </Modal>
+          </Form>
+        </Modal>
+      </div>
+
       <Table columns={columns} dataSource={data} rowKey="id"></Table>
     </div>
   );
