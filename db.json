@@ -1,4 +1,62 @@
 {
+  "users": [
+    {
+      "name": "Gerson",
+      "lastname": "Aranibar",
+      "category": "Training",
+      "email": "aranibar17@gmail.com",
+      "phone": "940994003",
+      "id": 1
+    },
+    {
+      "name": "Guillermo",
+      "lastname": "Sifuentes",
+      "category": "Boxing",
+      "email": "guillermo24@gmail.com",
+      "phone": "984150953",
+      "id": 2
+    },
+    {
+      "name": "Lizeth",
+      "lastname": "Fernandez",
+      "category": "Yoga",
+      "email": "lizeth55@gmail.com",
+      "phone": "999235444",
+      "id": 3
+    }
+  ],
+  "categories": [
+    {
+      "name": "Crossfit",
+      "price": 50,
+      "id": 1
+    },
+    {
+      "name": "Training",
+      "price": 45,
+      "id": 2
+    },
+    {
+      "name": "Body Balance",
+      "price": 55,
+      "id": 3
+    },
+    {
+      "name": "Yoga",
+      "price": 65,
+      "id": 4
+    },
+    {
+      "name": "Induction",
+      "price": 35,
+      "id": 5
+    },
+    {
+      "name": "Boxing",
+      "price": 30,
+      "id": 6
+    }
+  ],
   "reservas": [
     {
       "reserva": "Luis Alberto",
@@ -11,18 +69,6 @@
       "init": "25/09/2021",
       "finish": "01/10/2021",
       "id": 2
-    },
-    {
-      "reserva": "Vilma",
-      "init": "17/09/2021",
-      "finish": "13/10/2021",
-      "id": 3
-    }
-  ],
-  "users": [
-    {
-      "name": "gerson",
-      "lastname": "aranibar"
     }
   ]
 }
