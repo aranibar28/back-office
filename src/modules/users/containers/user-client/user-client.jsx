@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Table, Button, Modal, Input, Form, Select } from "antd";
+import { Table, Button, Modal, Input, Form, /* Select */ } from "antd";
 import {
   PlusOutlined,
   DeleteOutlined,
@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 
 const { Item } = Form;
-const { Option } = Select;
+/* const { Option } = Select; */
 const baseUrl = "http://localhost:3005/users";
 /* const categoryUrl = "http://localhost:3005/categories"; */
 
@@ -214,20 +214,8 @@ export function UserClient() {
             <Input name="lastname" onChange={handleChange} />
           </Item>
 
-          {/*<Item label="Especialidad">
-            <Input name="category" onChange={handleChange} />
-          </Item> */}
-
           <Item label="Categoría">
-            <Select
-              placeholder="Seleccionar"
-              name="category"
-              onChange={handleChange}
-            >
-              <Option value="Crossfit">Crossfit</Option>
-              <Option value="Training">Training</Option>
-              <Option value="Boxing">Boxing</Option>
-            </Select>
+            <Input name="category" onChange={handleChange} />
           </Item>
 
           <Item label="Email">

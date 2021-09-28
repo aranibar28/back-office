@@ -17,12 +17,20 @@
       "id": 2
     },
     {
-      "name": "Lizeth",
-      "lastname": "Fernandez",
+      "name": "Alejandro",
+      "lastname": "Wong",
       "category": "Yoga",
-      "email": "lizeth55@gmail.com",
+      "email": "dasdas@gmail.com",
       "phone": "999235444",
       "id": 3
+    },
+    {
+      "name": "Gerson Rolando",
+      "lastname": "Aranibar",
+      "category": "Yoga",
+      "email": "demo@gmail.com",
+      "phone": "984150953",
+      "id": 4
     }
   ],
   "categories": [
