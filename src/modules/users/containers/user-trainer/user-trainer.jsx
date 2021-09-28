@@ -11,6 +11,7 @@ import axios from "axios";
 const { Item } = Form;
 const { Option } = Select;
 const baseUrl = "http://localhost:3005/users";
+const baseUrlCategories = "http://localhost:3005/categories";
 
 export function UserTrainer() {
   const [data, setData] = useState([]);
@@ -172,8 +173,22 @@ export function UserTrainer() {
       });
   };
 
+  const [stateCategorie, setStateCategorie] = useState([]);
+
+  const getCategories = async () => {
+    await axios
+      .get(baseUrlCategories)
+      .then((categories) => {
+        setStateCategorie(categories.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     peticionGet();
+    getCategories();
   }, []);
 
   return (
@@ -221,11 +236,20 @@ export function UserTrainer() {
             <Select
               placeholder="Seleccionar"
               name="category"
-              onChange={handleChange}
+              onChange={(e) => {
+                handleChange({
+                  target: {
+                    name: "category",
+                    value: e,
+                  },
+                });
+              }}
             >
-              <Option value="Crossfit">Crossfit</Option>
-              <Option value="Training">Training</Option>
-              <Option value="Boxing">Boxing</Option>
+              {stateCategorie.map((categorie) => (
+                <Option key={categorie.id} value={categorie.name}>
+                  {categorie.name}
+                </Option>
+              ))}
             </Select>
           </Item>
 

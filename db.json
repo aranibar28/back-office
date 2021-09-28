@@ -31,6 +31,14 @@
       "email": "demo@gmail.com",
       "phone": "984150953",
       "id": 4
+    },
+    {
+      "name": "",
+      "lastname": "",
+      "category": "Boxing",
+      "email": "erere",
+      "phone": "3434343434",
+      "id": 5
     }
   ],
   "categories": [
@@ -63,6 +71,11 @@
       "name": "Boxing",
       "price": 30,
       "id": 6
+    },
+    {
+      "name": "Yoga",
+      "price": "30",
+      "id": 7
     }
   ],
   "reservas": [
