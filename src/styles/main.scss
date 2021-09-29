@@ -1,6 +1,8 @@
 h1,
 h2,
-h3 {
+h3,
+P,
+ul {
   margin: 0;
   padding: 0;
 }
@@ -32,12 +34,21 @@ h3 {
   margin: 0;
 }
 
+.container {
+  padding: 50px;
+  margin: 50px;
+}
+
 .flex {
   display: flex;
 }
 
-.betwwen {
+.between {
   justify-content: space-between;
+}
+
+.center {
+  justify-content: center;
 }
 
 .items-center {
@@ -87,4 +98,21 @@ h3 {
 .list {
   list-style: none;
   padding: 5px;
+}
+
+.footer {
+  padding: 20px;
+}
+
+.nav {
+  
+  ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+
+    li {
+      padding: 0 10px 0 10px;
+    }
+  }
 }

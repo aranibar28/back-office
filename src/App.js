@@ -1,103 +1,67 @@
-import "antd/dist/antd.css";
-import "./styles/main.scss";
-import { Layout, Menu, Breadcrumb } from "antd";
-import { BrowserRouter as Router, Link } from "react-router-dom";
-import {
-  HomeOutlined,
-  UserOutlined,
-  LaptopOutlined,
-  FormOutlined,
-  ShoppingCartOutlined,
-  BarChartOutlined,
-  QuestionCircleOutlined,
-} from "@ant-design/icons";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Layout } from "antd";
+/* import { BackOffice } from "components/layout/back-office"; */
+import { AuthLogin } from "modules/auth/containers/auth-login/auth-login";
+/* import { AuthRegister } from "modules/auth/containers/auth-register/auth-register"; */
+import { Footer } from "components/footer/index";
 
-import { RouterMain } from "./router";
-import { HeaderContainer } from "./components/header";
-
-const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
-
+const { Header, Content } = Layout;
 export function App() {
   return (
     <Router>
-      <Layout className="wrapper">
-        <Header>
-          <HeaderContainer />
+      <Layout className="wrapper text-center">
+        <Header className="header-container">
+          <div>
+            <Link to="/">
+              <img src="../logo-red.png" alt="logo" className="logo" />
+            </Link>
+          </div>
+          <nav className="nav">
+            <ul className="ul">
+              <li>
+                <Link to="/">Inicio</Link>
+              </li>
+              <li>
+                <Link to="/paginas">Páginas</Link>
+              </li>
+              <li>
+                <Link to="/servicios">Servicios</Link>
+              </li>
+              <li>
+                <Link to="/trainers">Trainers</Link>
+              </li>
+              <li>
+                <Link to="/contacto">Contacto</Link>
+              </li>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+            </ul>
+          </nav>
         </Header>
-        <Layout>
-          <Sider width={200} className="site-layout-background">
-            <Menu
-              mode="inline"
-              defaultSelectedKeys={["1"]}
-              defaultOpenKeys={["sub1"]}
-              style={{ height: "100%", borderRight: 0 }}
-            >
-              <Menu.Item key="1" icon={<HomeOutlined />}>
-                <Link to="/">Home</Link>
-              </Menu.Item>
-              <SubMenu key="sub1" icon={<UserOutlined />} title="Usuarios">
-                <Menu.Item key="2">
-                  <Link to="/trainers">Trainers</Link>
-                </Menu.Item>
-                <Menu.Item key="3">
-                  <Link to="/clientes">Clientes</Link>
-                </Menu.Item>
-              </SubMenu>
-              <SubMenu key="sub2" icon={<LaptopOutlined />} title="Servicios">
-                <Menu.Item key="4">
-                  <Link to="/categorias">Categorías</Link>
-                </Menu.Item>
-                <Menu.Item key="5">
-                  <Link to="/promociones">Promociones</Link>
-                </Menu.Item>
-              </SubMenu>
-              <SubMenu key="sub3" icon={<FormOutlined />} title="Suscripciones">
-                <Menu.Item key="6">
-                  <Link to="/membresias">Membresías</Link>
-                </Menu.Item>
-                <Menu.Item key="7">
-                  <Link to="/reservas">Reservas</Link>
-                </Menu.Item>
-                <Menu.Item key="8">
-                  <Link to="/horarios">Horarios</Link>
-                </Menu.Item>
-              </SubMenu>
-              <SubMenu
-                key="sub4"
-                icon={<ShoppingCartOutlined />}
-                title="Tienda Virtual"
-              >
-                <Menu.Item key="9">
-                  <Link to="/shop-categorys">Categorias</Link>
-                </Menu.Item>
-                <Menu.Item key="10">
-                  <Link to="/shop-products">Productos</Link>
-                </Menu.Item>
-                <Menu.Item key="11">
-                  <Link to="/shop-inventory">Inventario</Link>
-                </Menu.Item>
-                <Menu.Item key="12">
-                  <Link to="/shop-sales">Ventas</Link>
-                </Menu.Item>
-              </SubMenu>
-              <Menu.Item key="13" icon={<BarChartOutlined />}>
-                Reportes
-              </Menu.Item>
-              <Menu.Item key="14" icon={<QuestionCircleOutlined />}>
-                Ayuda
-              </Menu.Item>
-            </Menu>
-          </Sider>
-          <Layout style={{ padding: "0 24px 24px" }}>
-            <Breadcrumb style={{ margin: "16px 5px" }}>
-              <Breadcrumb.Item></Breadcrumb.Item>
-            </Breadcrumb>
-            <Content className="content site-layout-background">
-              <RouterMain />
-            </Content>
-          </Layout>
-        </Layout>
+        <Content>
+          <Switch>
+            <Route exact path="/">
+              <div>Inicio</div>
+            </Route>
+            <Route path="/paginas">
+              <div>Páginas</div>
+            </Route>
+            <Route path="/servicios">
+              <div>Servicios</div>
+            </Route>
+            <Route path="/trainers">
+              <div>Trainers</div>
+            </Route>
+            <Route path="/contacto">
+              <div>Contacto</div>
+            </Route>
+            <Route path="/login">
+              <AuthLogin />
+            </Route>
+          </Switch>
+        </Content>
+        <Footer>Todos los derechos reservados</Footer>
       </Layout>
     </Router>
   );

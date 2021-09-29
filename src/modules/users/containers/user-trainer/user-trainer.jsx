@@ -11,7 +11,7 @@ import axios from "axios";
 const { Item } = Form;
 const { Option } = Select;
 const baseUrl = "http://localhost:3005/users";
-const baseUrlCategories = "http://localhost:3005/categories";
+const baseUrlCategories = "http://localhost:3005/specialty";
 
 export function UserTrainer() {
   const [data, setData] = useState([]);
@@ -29,7 +29,7 @@ export function UserTrainer() {
     id: "",
     name: "",
     lastname: "",
-    category: "",
+    specialty: "",
     email: "",
     phone: "",
   });
@@ -52,8 +52,8 @@ export function UserTrainer() {
     },
     {
       title: "Especialidad",
-      dataIndex: "category",
-      key: "category",
+      dataIndex: "specialty",
+      key: "specialty",
     },
     {
       title: "Correo",
@@ -145,7 +145,7 @@ export function UserTrainer() {
           if (element.id === user.id) {
             element.name = user.name;
             element.lastname = user.lastname;
-            element.category = user.category;
+            element.specialty = user.specialty;
             element.email = user.email;
             element.phone = user.phone;
           }
@@ -173,13 +173,13 @@ export function UserTrainer() {
       });
   };
 
-  const [stateCategorie, setStateCategorie] = useState([]);
+  const [stateSpecialty, setStateSpecialty] = useState([]);
 
-  const getCategories = async () => {
+  const getSpecialties = async () => {
     await axios
       .get(baseUrlCategories)
-      .then((categories) => {
-        setStateCategorie(categories.data);
+      .then((specialty) => {
+        setStateSpecialty(specialty.data);
       })
       .catch((error) => {
         console.log(error);
@@ -188,12 +188,12 @@ export function UserTrainer() {
 
   useEffect(() => {
     peticionGet();
-    getCategories();
+    getSpecialties();
   }, []);
 
   return (
     <div>
-      <div className="flex text-center betwwen mb-4">
+      <div className="flex text-center between mb-4">
         <h3>Lista de Entrenadores</h3>
         <Button type="primary" icon={<PlusOutlined />} onClick={showModalAdd}>
           Agregar Trainer
@@ -222,42 +222,53 @@ export function UserTrainer() {
       >
         <Form labelCol={{ span: 5 }}>
           <Item label="Nombre">
-            <Input name="name" onChange={handleChange} />
+            <Input
+              name="name"
+              onChange={handleChange}
+              placeholder="Ingrese nombre"
+            />
           </Item>
           <Item label="Apelido">
-            <Input name="lastname" onChange={handleChange} />
+            <Input
+              name="lastname"
+              onChange={handleChange}
+              placeholder="Ingrese apellido"
+            />
           </Item>
-
-          {/*<Item label="Especialidad">
-            <Input name="category" onChange={handleChange} />
-          </Item> */}
-
-          <Item label="Categoría">
+          <Item label="Especialidad">
             <Select
               placeholder="Seleccionar"
-              name="category"
+              name="specialty"
               onChange={(e) => {
                 handleChange({
                   target: {
-                    name: "category",
+                    name: "specialty",
                     value: e,
                   },
                 });
               }}
             >
-              {stateCategorie.map((categorie) => (
-                <Option key={categorie.id} value={categorie.name}>
-                  {categorie.name}
+              {stateSpecialty.map((specialty) => (
+                <Option key={specialty.id} value={specialty.name}>
+                  {specialty.name}
                 </Option>
               ))}
             </Select>
           </Item>
 
           <Item label="Email">
-            <Input name="email" onChange={handleChange} />
+            <Input
+              name="email"
+              onChange={handleChange}
+              placeholder="Ingrese e-mail"
+            />
           </Item>
           <Item label="Telefono">
-            <Input name="phone" onChange={handleChange} />
+            <Input
+              name="phone"
+              onChange={handleChange}
+              placeholder="Ingresae teléfono"
+            />
           </Item>
         </Form>
       </Modal>
@@ -296,11 +307,24 @@ export function UserTrainer() {
             />
           </Item>
           <Item label="Especialidad">
-            <Input
-              name="category"
-              onChange={handleChange}
-              value={user && user.category}
-            />
+            <Select
+              placeholder="Seleccionar"
+              name="specialty"
+              onChange={(e) => {
+                handleChange({
+                  target: {
+                    name: "specialty",
+                    value: e,
+                  },
+                });
+              }}
+            >
+              {stateSpecialty.map((specialty) => (
+                <Option key={specialty.id} value={specialty.name}>
+                  {specialty.name}
+                </Option>
+              ))}
+            </Select>
           </Item>
           <Item label="Email">
             <Input

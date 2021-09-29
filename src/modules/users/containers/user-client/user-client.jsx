@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Table, Button, Modal, Input, Form, /* Select */ } from "antd";
+import { Table, Button, Modal, Input, Form } from "antd";
 import {
   PlusOutlined,
   DeleteOutlined,
@@ -9,9 +9,7 @@ import {
 import axios from "axios";
 
 const { Item } = Form;
-/* const { Option } = Select; */
-const baseUrl = "http://localhost:3005/users";
-/* const categoryUrl = "http://localhost:3005/categories"; */
+const baseUrl = "http://localhost:3005/clients";
 
 export function UserClient() {
   const [data, setData] = useState([]);
@@ -29,8 +27,9 @@ export function UserClient() {
     id: "",
     name: "",
     lastname: "",
-    category: "",
     email: "",
+    password: "",
+    dni: "",
     phone: "",
   });
 
@@ -51,14 +50,14 @@ export function UserClient() {
       key: "lastname",
     },
     {
-      title: "Especialidad",
-      dataIndex: "category",
-      key: "category",
-    },
-    {
       title: "Correo",
       dataIndex: "email",
       key: "email",
+    },
+    {
+      title: "DNI",
+      dataIndex: "dni",
+      key: "dni",
     },
     {
       title: "Teléfono",
@@ -145,8 +144,9 @@ export function UserClient() {
           if (element.id === user.id) {
             element.name = user.name;
             element.lastname = user.lastname;
-            element.category = user.category;
             element.email = user.email;
+            element.phone = user.password;
+            element.phone = user.dni;
             element.phone = user.phone;
           }
           return null;
@@ -179,7 +179,7 @@ export function UserClient() {
 
   return (
     <div>
-      <div className="flex text-center betwwen mb-4">
+      <div className="flex text-center between mb-4">
         <h3>Lista de Clientes</h3>
         <Button type="primary" icon={<PlusOutlined />} onClick={showModalAdd}>
           Agregar Cliente
@@ -208,21 +208,46 @@ export function UserClient() {
       >
         <Form labelCol={{ span: 5 }}>
           <Item label="Nombre">
-            <Input name="name" onChange={handleChange} />
+            <Input
+              name="name"
+              onChange={handleChange}
+              placeholder="Ingrese nombre"
+            />
           </Item>
           <Item label="Apelido">
-            <Input name="lastname" onChange={handleChange} />
+            <Input
+              name="lastname"
+              onChange={handleChange}
+              placeholder="Ingrese apellido"
+            />
           </Item>
-
-          <Item label="Categoría">
-            <Input name="category" onChange={handleChange} />
-          </Item>
-
           <Item label="Email">
-            <Input name="email" onChange={handleChange} />
+            <Input
+              name="email"
+              onChange={handleChange}
+              placeholder="Ingrese e-mail"
+            />
+          </Item>
+          <Item label="Password">
+            <Input.Password
+              name="password"
+              onChange={handleChange}
+              placeholder="Ingrese nombre"
+            />
+          </Item>
+          <Item label="DNI">
+            <Input
+              name="dni"
+              onChange={handleChange}
+              placeholder="Ingresae DNI"
+            />
           </Item>
           <Item label="Telefono">
-            <Input name="phone" onChange={handleChange} />
+            <Input
+              name="phone"
+              onChange={handleChange}
+              placeholder="Ingresae teléfono"
+            />
           </Item>
         </Form>
       </Modal>
@@ -260,18 +285,25 @@ export function UserClient() {
               value={user && user.lastname}
             />
           </Item>
-          <Item label="Especialidad">
-            <Input
-              name="category"
-              onChange={handleChange}
-              value={user && user.category}
-            />
-          </Item>
           <Item label="Email">
             <Input
               name="email"
               onChange={handleChange}
               value={user && user.email}
+            />
+          </Item>
+          <Item label="Password">
+            <Input.Password
+              name="password"
+              onChange={handleChange}
+              value={user && user.password}
+            />
+          </Item>
+          <Item label="DNI">
+            <Input
+              name="dni"
+              onChange={handleChange}
+              value={user && user.dni}
             />
           </Item>
           <Item label="Telefono">
@@ -292,7 +324,7 @@ export function UserClient() {
           <Button onClick={showModalDelete} key="closed">
             No
           </Button>,
-          <Button type="primary" danger onClick={peticionDelete} key="saved" >
+          <Button type="primary" danger onClick={peticionDelete} key="saved">
             Sí
           </Button>,
         ]}

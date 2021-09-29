@@ -3,7 +3,7 @@
     {
       "name": "Gerson",
       "lastname": "Aranibar",
-      "category": "Training",
+      "specialty": "Body Balance",
       "email": "aranibar17@gmail.com",
       "phone": "940994003",
       "id": 1
@@ -11,7 +11,7 @@
     {
       "name": "Guillermo",
       "lastname": "Sifuentes",
-      "category": "Boxing",
+      "specialty": "Body Balance",
       "email": "guillermo24@gmail.com",
       "phone": "984150953",
       "id": 2
@@ -19,29 +19,50 @@
     {
       "name": "Alejandro",
       "lastname": "Wong",
-      "category": "Yoga",
+      "specialty": "Boxing",
       "email": "dasdas@gmail.com",
       "phone": "999235444",
       "id": 3
     },
     {
       "name": "Gerson Rolando",
-      "lastname": "Aranibar",
-      "category": "Yoga",
-      "email": "demo@gmail.com",
-      "phone": "984150953",
-      "id": 4
-    },
-    {
-      "name": "",
-      "lastname": "",
-      "category": "Boxing",
-      "email": "erere",
-      "phone": "3434343434",
-      "id": 5
+      "lastname": "Aranibar Concha",
+      "specialty": "Induction",
+      "email": "aranibargerson28@gmail.com",
+      "phone": "999235444",
+      "id": 6
     }
   ],
-  "categories": [
+  "clients": [
+    {
+      "name": "Luis",
+      "lastname": "Sanchez",
+      "email": "sanchez@gmail.com",
+      "password": "123",
+      "phone": "940994003",
+      "dni": "70800756",
+      "id": 1
+    },
+    {
+      "name": "Martin",
+      "lastname": "Mendez",
+      "email": "mendez32@gmail.com",
+      "password": "123",
+      "phone": "940994003",
+      "dni": "42800756",
+      "id": 2
+    },
+    {
+      "name": "Alberto",
+      "lastname": "Zavala",
+      "email": "zavala15@gmail.com",
+      "password": "123",
+      "phone": "940994003",
+      "dni": "40800756",
+      "id": 3
+    }
+  ],
+  "specialty": [
     {
       "name": "Crossfit",
       "price": 50,
@@ -71,11 +92,6 @@
       "name": "Boxing",
       "price": 30,
       "id": 6
-    },
-    {
-      "name": "Yoga",
-      "price": "30",
-      "id": 7
     }
   ],
   "reservas": [

@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 
 const { Item } = Form;
-const baseUrl = "http://localhost:3005/categories";
+const baseUrl = "http://localhost:3005/specialty";
 
 export function ServicesCategory() {
   const [data, setData] = useState([]);
@@ -156,7 +156,7 @@ export function ServicesCategory() {
 
   return (
     <div>
-      <div className="flex text-center betwwen mb-4">
+      <div className="flex text-center between mb-4">
         <h3>Lista de Categorías</h3>
         <Button type="primary" icon={<PlusOutlined />} onClick={showModalAdd}>
           Agregar Categoría

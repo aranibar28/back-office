@@ -1,0 +1,15 @@
+.nav {
+  @apply text-white;
+  @apply rounded-xl;
+  @apply p-4;
+  ul {
+    @apply flex;
+
+    li {
+      @apply ml-4;
+      &:first-child {
+        margin: 0;
+      }
+    }
+  }
+}

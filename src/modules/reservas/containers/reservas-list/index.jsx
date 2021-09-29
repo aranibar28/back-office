@@ -166,7 +166,7 @@ export function Reservas() {
 
   return (
     <div className="reservas">
-      <div className="flex text-center betwwen mb-4">
+      <div className="flex text-center between mb-4">
         <h3>Lista de Reservas</h3>
         <Button type="primary" icon={<PlusOutlined />} onClick={showModalAdd}>
           Agregar Reserva
