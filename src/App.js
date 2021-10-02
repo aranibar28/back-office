@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Layout } from "antd";
-/* import { BackOffice } from "components/layout/back-office"; */
+import { BackOffice } from "components/layout/back-office";
 import { AuthLogin } from "modules/auth/containers/auth-login/auth-login";
 /* import { AuthRegister } from "modules/auth/containers/auth-register/auth-register"; */
 import { Footer } from "components/footer/index";
+import { Home } from "components/home/home";
 
 const { Header, Content } = Layout;
 export function App() {
@@ -42,7 +43,7 @@ export function App() {
         <Content>
           <Switch>
             <Route exact path="/">
-              <div>Inicio</div>
+              <Home/>
             </Route>
             <Route path="/paginas">
               <div>Páginas</div>
@@ -58,6 +59,9 @@ export function App() {
             </Route>
             <Route path="/login">
               <AuthLogin />
+            </Route>
+            <Route path="/dashboard">
+              <BackOffice />
             </Route>
           </Switch>
         </Content>

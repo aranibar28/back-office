@@ -11,19 +11,15 @@ import {
 } from "@ant-design/icons";
 
 import { RouterMain } from "router";
-import { HeaderContainer } from "components/header";
+/* import { HeaderContainer } from "components/header"; */
 
 const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+const { /* Header,  */Content, Sider } = Layout;
 
 export function BackOffice() {
   return (
     <Router>
-      <Layout className="wrapper">
-        <Header>
-          <HeaderContainer />
-        </Header>
-        <Layout>
+        <Layout className="">
           <Sider width={200} className="site-layout-background">
             <Menu
               mode="inline"
@@ -46,19 +42,10 @@ export function BackOffice() {
                 <Menu.Item key="4">
                   <Link to="/categorias">Categorías</Link>
                 </Menu.Item>
-                <Menu.Item key="5">
-                  <Link to="/promociones">Promociones</Link>
-                </Menu.Item>
               </SubMenu>
               <SubMenu key="sub3" icon={<FormOutlined />} title="Suscripciones">
-                <Menu.Item key="6">
-                  <Link to="/membresias">Membresías</Link>
-                </Menu.Item>
                 <Menu.Item key="7">
                   <Link to="/reservas">Reservas</Link>
-                </Menu.Item>
-                <Menu.Item key="8">
-                  <Link to="/horarios">Horarios</Link>
                 </Menu.Item>
               </SubMenu>
               <SubMenu
@@ -96,7 +83,6 @@ export function BackOffice() {
             </Content>
           </Layout>
         </Layout>
-      </Layout>
     </Router>
   );
 }

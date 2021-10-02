@@ -9,11 +9,6 @@ export function AuthLogin() {
     remember: false,
   });
 
-  /*   const onSubmit = (event) => {
-    event.preventDefault();
-    console.log("Datos:", formState);
-  }; */
-
   const onFinish = (values) => {
     console.log("Success:", values);
   };
@@ -21,6 +16,7 @@ export function AuthLogin() {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+  
 
   useEffect(() => {}, []);
 
